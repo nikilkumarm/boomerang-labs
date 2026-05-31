@@ -1099,6 +1099,9 @@ html {
 }
 
 .cta-btn {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: center;
   background: var(--lime-green) !important;
   color: #ffffff !important;
   text-decoration: none;
@@ -1107,6 +1110,10 @@ html {
   padding: 18px 36px;
   border-radius: 100px;
   transition: all 0.3s ease;
+}
+
+.newsletter-teaser {
+  flex-shrink: 0;
 }
 
 .cta-btn:hover {
@@ -2278,36 +2285,47 @@ html {
     padding-top: 24px;
     padding-bottom: 24px;
   }
+
   .footer-top {
     flex-direction: column;
     gap: 16px;
   }
+
   .footer-logo {
     gap: 8px;
   }
-  .footer-logo, .footer-nav, .footer-social {
+
+  .footer-logo,
+  .footer-nav,
+  .footer-social {
     flex: auto;
     justify-content: center;
     width: 100%;
   }
+
   .brand-logo-footer {
     object-position: center;
     margin: 0 auto;
     display: block;
   }
+
   .footer-agency-info {
     text-align: center;
   }
+
   .footer-nav {
     flex-wrap: wrap;
     gap: 12px;
   }
+
   .footer-divider {
     margin-bottom: 16px;
   }
+
   .footer-social {
     justify-content: center;
   }
+
   .footer-bottom {
     flex-direction: column;
     gap: 16px;
@@ -2361,6 +2379,7 @@ html {
     bottom: 24px;
     right: 24px;
   }
+
   .scroll-to-top button {
     width: 40px;
     height: 40px;
