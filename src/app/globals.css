@@ -110,7 +110,16 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
   transition: opacity 0.2s ease;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
 }
 
 .contact-link-simple:hover {
@@ -141,7 +150,7 @@ body {
 }
 
 .hero-subtitle {
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.3;
   font-weight: 400;
   color: var(--gray-text);
@@ -341,8 +350,12 @@ body {
   .hero {
     flex-direction: column-reverse;
     align-items: flex-start;
-    gap: 40px;
-    margin-top: 60px;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .hero-left {
+    padding-top: 0;
   }
 
   .hero-left,
@@ -364,6 +377,97 @@ body {
   }
 }
 
+/* Mobile Menu Overlay Styles */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 32px;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.mobile-menu-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.mobile-menu-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mobile-menu-close {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+  padding: 8px;
+  margin-right: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+  transform: rotate(90deg);
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mobile-menu-links a {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  letter-spacing: -0.03em;
+}
+
+.mobile-menu-links a:hover {
+  opacity: 0.6;
+  transform: translateX(8px);
+  color: var(--lime-green);
+}
+
+.mobile-menu-contact {
+  margin-top: 48px;
+  font-size: 22px !important;
+  font-weight: 500;
+  color: var(--lime-green) !important;
+  background: none;
+  padding: 0;
+  text-align: left;
+}
+
 @media (max-width: 768px) {
   body {
     padding: 8px 16px 16px 16px;
@@ -379,14 +483,33 @@ body {
   }
 
   .brand-logo {
-    height: 64px;
-    margin-left: 10px;
+    height: 72px;
+    margin-left: 16px;
     transform: translateY(3px);
   }
 
   .header-right {
     margin-right: 10px;
+    gap: 12px;
   }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+  }
+
+
 
   .header-nav {
     display: none;
@@ -403,6 +526,7 @@ body {
 
   .hero-title {
     font-size: clamp(60px, 15vw, 100px);
+    padding-left: 16px;
   }
 
   .proposal-card-split {
@@ -411,8 +535,10 @@ body {
   }
 
   .proposal-split-content {
-    flex: 0 0 100%;
+    flex: none;
     padding: 40px 32px;
+    justify-content: flex-start;
+    gap: 32px;
   }
 
   .proposal-split-middle {
@@ -420,7 +546,7 @@ body {
   }
 
   .proposal-split-image-col {
-    flex: 0 0 100%;
+    flex: none;
     width: 100%;
     height: 360px;
     min-height: 360px;
@@ -452,10 +578,12 @@ body {
 
   .hero-title {
     font-size: clamp(48px, 12vw, 80px);
+    padding-left: 12px;
   }
 
   .proposal-split-content {
     padding: 32px 24px;
+    gap: 24px;
   }
 
   .proposal-split-title {
@@ -468,13 +596,14 @@ body {
   }
 
   .brand-logo {
-    height: 54px;
-    margin-left: 0;
+    height: 62px;
+    margin-left: 8px;
     transform: translateY(2px);
   }
 
   .header-right {
     margin-right: 0;
+    gap: 8px;
   }
 
   .contact-box,
@@ -949,7 +1078,7 @@ html {
 }
 
 .quick-cta {
-  padding: 80px 0;
+  padding: 80px 0 0 0;
 }
 
 .cta-box {
@@ -1634,7 +1763,7 @@ html {
 .company-main-title {
   font-size: clamp(40px, 6vw, 76px);
   font-weight: 500;
-  line-height: 0.95;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   margin: 0;
   color: var(--foreground);
@@ -2012,5 +2141,228 @@ html {
   .modal-sections {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+}
+
+/* =========================================
+   FOOTER STYLES
+   ========================================= */
+.footer {
+  margin-top: 40px;
+  padding-top: 60px;
+  padding-bottom: 80px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  flex: 1;
+}
+
+.brand-logo-footer {
+  object-fit: contain;
+  object-position: left;
+  max-width: 100px;
+  height: auto;
+}
+
+.footer-agency-info {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--gray-text);
+  line-height: 1.6;
+}
+
+.footer-agency-info p {
+  margin: 0;
+}
+
+.footer-agency-info a {
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-agency-info a:hover {
+  text-decoration: underline;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex: 2;
+  padding-top: 40px;
+}
+
+.footer-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--foreground);
+}
+
+.footer-social {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  flex: 1;
+  padding-top: 40px;
+}
+
+.social-link {
+  color: var(--foreground);
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link:hover {
+  opacity: 0.6;
+}
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 24px;
+}
+
+.legal-link {
+  font-size: 13px;
+  color: var(--gray-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legal-link:hover {
+  color: var(--foreground);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    gap: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .footer-top {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .footer-logo {
+    gap: 8px;
+  }
+  .footer-logo, .footer-nav, .footer-social {
+    flex: auto;
+    justify-content: center;
+    width: 100%;
+  }
+  .brand-logo-footer {
+    object-position: center;
+    margin: 0 auto;
+    display: block;
+  }
+  .footer-agency-info {
+    text-align: center;
+  }
+  .footer-nav {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-divider {
+    margin-bottom: 16px;
+  }
+  .footer-social {
+    justify-content: center;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+/* Scroll To Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scroll-to-top button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--foreground);
+  color: var(--background);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.scroll-to-top button:hover {
+  transform: scale(1.1);
+  background-color: var(--lime-green);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 24px;
+    right: 24px;
+  }
+  .scroll-to-top button {
+    width: 40px;
+    height: 40px;
   }
 }

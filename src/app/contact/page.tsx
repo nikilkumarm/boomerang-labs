@@ -13,18 +13,39 @@ export default function ContactPage() {
     details: ''
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        projectType: 'fashion',
-        details: ''
-      })
-    }, 4000)
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE",
+          ...formData
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true)
+        setTimeout(() => {
+          setSubmitted(false)
+          setFormData({
+            name: '',
+            email: '',
+            projectType: 'fashion',
+            details: ''
+          })
+        }, 4000)
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Error sending message.");
+    }
   }
 
   return (
@@ -48,14 +69,12 @@ export default function ContactPage() {
             <div className="contact-info-list">
               <div className="contact-info-item">
                 <span className="info-label">Direct Correspondence</span>
-                <span className="info-val">hello@boomeranglabs.com</span>
-                <span className="info-val">+44 (0) 20 7946 0958</span>
+                <span className="info-val">hello@boomeranglabs.in</span>
+                <span className="info-val">+91 8124 88 7577</span>
               </div>
               <div className="contact-info-item">
                 <span className="info-label">Studio Coordinates</span>
-                <span className="info-val">London &bull; Shoreditch High St.</span>
-                <span className="info-val">Munich &bull; Leopoldstra&szlig;e 22</span>
-                <span className="info-val">Amsterdam &bull; Herengracht 405</span>
+                <span className="info-val">Bengaluru, Karnataka, IN</span>
               </div>
             </div>
           </div>

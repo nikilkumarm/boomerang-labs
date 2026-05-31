@@ -11,7 +11,7 @@ export default function CompanyPage() {
         {/* Left Column: Text and Details */}
         <div className="company-text-col">
           <h1 className="company-main-title">
-            Introducing<br />Our Studio
+            Introducing<br /><span style={{ fontWeight: 800, fontSize: '1.15em' }}>Our Studio</span>
           </h1>
 
           <div className="company-description-block">
@@ -29,8 +29,7 @@ export default function CompanyPage() {
           </div>
 
           <div className="company-action-pills">
-            <Link href="/proposal" className="pill-outline">Campaign Proposal</Link>
-            <span className="pill-lime">2026</span>
+            <Link href="/proposal" className="pill-outline">Campaign Proposal 2026</Link>
           </div>
         </div>
 
